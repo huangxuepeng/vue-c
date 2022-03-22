@@ -1,68 +1,20 @@
 {
-    "@/packages/index/router.js": [
+    "@/packages/Home/router.js": [
         {
-            "name": "index",
-            "path": "/index",
+            "name": "Home",
+            "path": "/home",
             "component": "index",
             "mata": {
                 "title": "Example-out",
                 "content": {
-                    "description": "主页"
+                    "description": "主页面"
                 }
             },
-            "redirect": "/index/page_a",
+            "redirect": "/home/testA",
             "children": [
                 {
                     "name": "Example-insert",
-                    "path": "page_a",
-                    "component": "pageA",
-                    "redirect": "/index/page_a/01",
-                    "children": [
-                        {
-                            "path": "01",
-                            "component": "getQuery"
-                        },
-                        {
-                            "path": "02",
-                            "component": "timeFormat"
-                        },
-                        {
-                            "path": "03",
-                            "component": "debounceInstruction"
-                        },
-                        {
-                            "path": "04",
-                            "component": "ajaxExample"
-                        },
-                        {
-                            "path": "05",
-                            "component": "storeCom"
-                        },
-                        {
-                            "path": "06",
-                            "component": "pxBorder"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "@/packages/Publish-dynamics/router.js": [
-        {
-            "name": "Publish-dynamics",
-            "path": "/user/publishdynamics",
-            "component": "index",
-            "mata": {
-                "title": "Example-out",
-                "content": {
-                    "description": "用户发布动态"
-                }
-            },
-            "redirect": "/user/publishdynamics/testA",
-            "children": [
-                {
-                    "name": "Example-insert",
-                    "path": "/user/publishdynamics/testA",
+                    "path": "/home/testA",
                     "component": "testA"
                 }
             ]

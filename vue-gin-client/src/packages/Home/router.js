@@ -2,25 +2,25 @@
 import index from './index.vue';
 
 // 导入不同的组件
-// import testA from './views/Publish-dynamics/index.vue';
-import Home from './components/Home.vue';
+import testA from './views/Home/index.vue';
+
 export default [
     {
-        name: 'Publish-dynamics',
-        path: '/index', 
+        name: 'Home',
+        path: '/index',
         component: index,
         mata: {
             title: 'Example-out',
             content:{
-                description:'用户发布动态'
+                description:'主页面'
             }
         },
-        redirect: '/user/login',
+        redirect: '/home/testA',
         children: [
             {
                 name: 'Example-insert',
-                path: '/user/login',
-                component: Home
+                path: '/home/testA',
+                component: testA
             }
         ]
     }
