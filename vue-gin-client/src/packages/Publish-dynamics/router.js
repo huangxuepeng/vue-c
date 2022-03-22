@@ -2,12 +2,12 @@
 import index from './index.vue';
 
 // 导入不同的组件
-import testA from './views/Publish-dynamics/index.vue';
-
+// import testA from './views/Publish-dynamics/index.vue';
+import Home from './components/Home.vue';
 export default [
     {
         name: 'Publish-dynamics',
-        path: '/user/publishdynamics', 
+        path: '/index', 
         component: index,
         mata: {
             title: 'Example-out',
@@ -15,12 +15,12 @@ export default [
                 description:'用户发布动态'
             }
         },
-        redirect: '/user/publishdynamics/testA',
+        redirect: '/user/login',
         children: [
             {
                 name: 'Example-insert',
-                path: '/user/publishdynamics/testA',
-                component: testA
+                path: '/user/login',
+                component: Home
             }
         ]
     }
