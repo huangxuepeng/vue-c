@@ -1,7 +1,7 @@
 {
-    "name": "vue-gin-client",
+    "name": "vue-wall-client",
     "version": "1.0.0",
-    "description": "表白墙c端的书写",
+    "description": "to c",
     "main": "index.js",
     "scripts": {
         "dev": "webpack serve --config build/webpack.dev.js",
@@ -9,7 +9,7 @@
         "create-page": "node template/script.js",
         "chii": "chii start -p 8080"
     },
-    "author": "黄雪朋",
+    "author": "小大白兔",
     "cssExpand": "less",
     "license": "ISC",
     "browserslist": [
@@ -67,7 +67,6 @@
         "@babel/plugin-transform-regenerator": "^7.12.1",
         "@babel/plugin-transform-runtime": "^7.12.10",
         "axios": "^0.21.1",
-        "element-ui": "^2.15.6",
         "qs": "^6.9.4",
         "vant": "^2.12.6",
         "vue": "^2.6.12",

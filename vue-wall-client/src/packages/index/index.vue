@@ -6,12 +6,11 @@
 
 <script>
 export default {
-    name:'Home',
+    name: 'index',
     data() {
         return {};
-    }    
+    }
 };
 </script>
-<style lang="less" scoped>
-
+<style lang="" scoped>
 </style>
