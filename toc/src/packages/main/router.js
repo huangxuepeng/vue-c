@@ -3,6 +3,7 @@
 // 导入不同的组件
 import Home from './components/Home.vue';
 import Searchpop from './components/Searchpop.vue'; 
+import Love from './components/Love.vue';
 export default [
     {
         name: 'main',
@@ -14,12 +15,16 @@ export default [
                 description:'完成所有的操作'
             }
         },
-        // redirect: '/home/searchpop',
         children: [
             {
                 path: 'searchpop',
+                name: 'Searchpop',
                 component: Searchpop
-            }
+            },
+            {
+                path: 'love',
+                component: Love
+            },
         ]
     }
 ];

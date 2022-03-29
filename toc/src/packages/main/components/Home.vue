@@ -2,30 +2,30 @@
     <div>
         <div class="desc">
             <van-search
-            v-model="search"
             shape="round"
             show-action
-            placeholder="请输入搜索关键词"
-            disabled
-            v-debounce="$router.push('/home/searchpop').catch(err=>{})"
+            placeholder="请输入搜索关键词" 
+            @click="$router.push('/home/searchpop').catch(err=>{})"
             />
+            <transition name="van-slide-right">
+                <router-view></router-view>
+            </transition>
         </div>
-        <transition name="slide">
-            <router-view></router-view>
-        </transition>
+        
     </div>
 </template>
 <script>
+// import { Test } from '../server/api.js';
 import { mixin } from '@/mixins/instructions.js';
 export default {
     mixins: [mixin],
     data() {
         return {
-            search: '',
         };
     },
-    methods: {
-
-    },
+    methods: {},
 };
 </script>
+
+<style lang="less" scoped>
+</style>

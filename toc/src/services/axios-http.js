@@ -3,7 +3,7 @@ import QS from 'qs';
 
 // 允许使用的时候传入自定义的一些参数 比如基地址
 const initConfig = {
-    baseUrl: '/'
+    baseUrl: '/u/v1/'
 };
 
 // const headers = {
