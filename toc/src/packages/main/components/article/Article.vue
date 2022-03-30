@@ -1,0 +1,20 @@
+<template>
+  <div>
+      这是文章
+  </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+
+        };
+    },
+
+};
+</script>
+
+<style>
+
+</style>

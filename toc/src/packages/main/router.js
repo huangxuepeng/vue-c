@@ -3,7 +3,11 @@
 // 导入不同的组件
 import Home from './components/Home.vue';
 import Searchpop from './components/Searchpop.vue'; 
-import Love from './components/Love.vue';
+import Square from './components/square/Square.vue';
+import Opposite from './components/opposite/opposite.vue';
+import Article from './components/article/Article.vue';
+import Message from './components/message/Message.vue';
+import Myself from './components/myself/Myself.vue';
 export default [
     {
         name: 'main',
@@ -15,15 +19,37 @@ export default [
                 description:'完成所有的操作'
             }
         },
+        redirect: '/home/square',
         children: [
             {
                 path: 'searchpop',
-                name: 'Searchpop',
+                name: '搜索',
                 component: Searchpop
             },
             {
-                path: 'love',
-                component: Love
+                path: 'square',
+                name: '广场',
+                component: Square
+            },
+            {
+                path: 'opposite',
+                name: '异性',
+                component: Opposite
+            },
+            {
+                path: 'article',
+                name: '文章',
+                component: Article
+            },
+            {
+                path: 'message',
+                name: '信息',
+                component: Message
+            },
+            {
+                path: 'myself',
+                name: '我的',
+                component: Myself
             },
         ]
     }

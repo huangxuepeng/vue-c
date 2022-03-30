@@ -11,14 +11,18 @@
                 <router-view></router-view>
             </transition>
         </div>
-        
+        <AppTabbar />
     </div>
 </template>
 <script>
 // import { Test } from '../server/api.js';
+import AppTabbar from './AppTabbar.vue';
 import { mixin } from '@/mixins/instructions.js';
 export default {
     mixins: [mixin],
+    components:{
+        AppTabbar,
+    },
     data() {
         return {
         };
