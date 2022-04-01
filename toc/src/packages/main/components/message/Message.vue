@@ -1,6 +1,6 @@
 <template>
   <div>
-      这是消息
+        <van-nav-bar title="消息" />
   </div>
 </template>
 

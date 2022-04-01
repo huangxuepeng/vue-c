@@ -9,7 +9,11 @@ import {
     List,
     Cell,
     Tabbar,
-    TabbarItem
+    SwipeCell,
+    TabbarItem,
+    Card,
+    NavBar,
+    NoticeBar,
 } from 'vant';
 
 Vue.use(Button);
@@ -21,3 +25,7 @@ Vue.use(List);
 Vue.use(Cell);
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
+Vue.use(SwipeCell);
+Vue.use(Card);
+Vue.use(NavBar);
+Vue.use(NoticeBar);

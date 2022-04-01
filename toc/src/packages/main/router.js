@@ -19,7 +19,7 @@ export default [
                 description:'完成所有的操作'
             }
         },
-        redirect: '/home/square',
+        // redirect: '/home/square',
         children: [
             {
                 path: 'searchpop',

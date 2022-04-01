@@ -15,5 +15,6 @@ const _API = request();
  */
 
 export const _exampleAPI = (params) => _API('GET', 'api/test', params);
-export const Test = (params) => _API('GET', '/u/v1/test/tt/' + '1', params);
 export const Login = (params) => _API('POST', '/u/v1/user/login', params);
+export const Articles = (params) => _API('GET', '/u/v1/forum/articleget', params);
+export const Notices = (params) => _API('GET', '/u/v1/notice/getnotice', params);

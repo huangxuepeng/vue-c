@@ -1,6 +1,6 @@
 <template>
   <div>
-      这是我的
+        <van-nav-bar title="我的" />
   </div>
 </template>
 

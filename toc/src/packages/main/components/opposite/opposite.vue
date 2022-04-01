@@ -1,6 +1,6 @@
 <template>
   <div>
-      这是异性列表
+        <van-nav-bar title="缘分" />
   </div>
 </template>
 
