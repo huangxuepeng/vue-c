@@ -27,11 +27,5 @@ export default {
 </script>
 
 <style>
-    /* "browserslist": [
-        "last 2 version",
-        "> 1%",
-        "iOS >= 7",
-        "Android > 4.1",
-        "Firefox > 20"
-    ], */
+
 </style>
