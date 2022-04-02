@@ -18,7 +18,7 @@ module.exports = {
             vue: 'vue/dist/vue.esm.js',
             '@': utils.resolve('src')
         },
-        extensions: ['.js', '.vue', '.json', '.less', '.sass', '.css']
+        extensions: ['.js', '.vue', '.json', '.less', '.css']
     },
 
     // 打包入口
