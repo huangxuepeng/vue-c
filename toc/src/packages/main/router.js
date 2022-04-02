@@ -6,6 +6,7 @@ import Searchpop from './components/Searchpop.vue';
 import Square from './components/square/Square.vue';
 import Opposite from './components/opposite/opposite.vue';
 import Article from './components/article/Article.vue';
+import ShowArticle from './components/article/ShowArticle.vue';
 import Message from './components/message/Message.vue';
 import Myself from './components/myself/Myself.vue';
 export default [
@@ -19,7 +20,7 @@ export default [
                 description:'完成所有的操作'
             }
         },
-        // redirect: '/home/square',
+        redirect: '/home/square',
         children: [
             {
                 path: 'searchpop',
@@ -40,6 +41,11 @@ export default [
                 path: 'article',
                 name: '文章',
                 component: Article
+            },
+            {
+                path: 'showArticle',
+                name: '显示文章的内容',
+                component: ShowArticle
             },
             {
                 path: 'message',

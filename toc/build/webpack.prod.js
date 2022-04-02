@@ -4,8 +4,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    //.BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
@@ -25,7 +25,7 @@ module.exports = merge(baseWebpackConfig, {
                 removeComments: true // 去除注释
             }
         }),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
         new StatsPlugin('stats.json', {
             chunkModules: true,
