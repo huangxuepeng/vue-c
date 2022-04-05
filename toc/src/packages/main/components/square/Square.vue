@@ -5,12 +5,15 @@
         title="广场" 
         />
         <van-notice-bar scrollable :text="notice" />
+        <Dynamic></Dynamic>
   </div>
 </template>
 
 <script>
 import { Notices } from '../../server/api';
+import Dynamic from './Dynamic.vue';
 export default {
+    components: { Dynamic },
     data() {
         return {
             notice: '',

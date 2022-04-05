@@ -9,6 +9,9 @@ import Article from './components/article/Article.vue';
 import ShowArticle from './components/article/ShowArticle.vue';
 import Message from './components/message/Message.vue';
 import Myself from './components/myself/Myself.vue';
+import Login from './components/Login/Login.vue';
+import ShowUserDetile from '../main/components/square/ShowUserDetile.vue';
+import DyDetail from '../main/components/square/DyDetail.vue';
 export default [
     {
         name: 'main',
@@ -57,6 +60,21 @@ export default [
                 name: '我的',
                 component: Myself
             },
+            {
+                path: 'detail',
+                name: '作者细节',
+                component: ShowUserDetile
+            },
+            {
+                path: 'dydetail',
+                name: '动态细节',
+                component: DyDetail
+            }
         ]
+    },
+    {
+        name: '登录',
+        path: '/login',
+        component: Login,
     }
 ];

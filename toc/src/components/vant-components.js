@@ -14,6 +14,11 @@ import {
     Card,
     NavBar,
     NoticeBar,
+    Image,
+    Field,
+    Notify,
+    Loading,
+    CellGroup
 } from 'vant';
 
 Vue.use(Button);
@@ -29,3 +34,8 @@ Vue.use(SwipeCell);
 Vue.use(Card);
 Vue.use(NavBar);
 Vue.use(NoticeBar);
+Vue.use(Image);
+Vue.use(Field);
+Vue.use(Notify);
+Vue.use(Loading);
+Vue.use(CellGroup);
