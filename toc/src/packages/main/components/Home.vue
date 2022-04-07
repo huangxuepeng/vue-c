@@ -1,9 +1,9 @@
 <template>
     <div>
     <!-- <van-notice-bar scrollable :text="notices" /> -->
-    <transition name="van-slide-right">
+    <!-- <transition name="van-slide-right"> -->
         <router-view></router-view>
-    </transition>
+    <!-- </transition> -->
         <!-- <AppTabbar /> -->
     </div>
 </template>
