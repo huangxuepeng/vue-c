@@ -18,7 +18,8 @@ import {
     Field,
     Notify,
     Loading,
-    CellGroup
+    CellGroup,
+    Uploader,
 } from 'vant';
 
 Vue.use(Button);
@@ -39,3 +40,4 @@ Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Loading);
 Vue.use(CellGroup);
+Vue.use(Uploader);

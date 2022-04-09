@@ -12,6 +12,7 @@ import Myself from './components/myself/Myself.vue';
 import Login from './components/Login/Login.vue';
 import ShowUserDetile from '../main/components/square/ShowUserDetile.vue';
 import DyDetail from '../main/components/square/DyDetail.vue';
+import PublishDy from '../main/components/square/publishDy.vue';
 export default [
     {
         name: 'main',
@@ -69,7 +70,12 @@ export default [
                 path: 'dydetail',
                 name: '动态细节',
                 component: DyDetail
-            }
+            },
+            {
+                path:'square/publishDy',
+                name: '发布动态',
+                component: PublishDy
+            },
         ]
     },
     {
