@@ -5,18 +5,22 @@
       <!-- 第一种插槽方式 -->
         <template #title>
           <van-image
-            src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+            :src="item.Cover"
             @click="showUserDetile(item.UserRegisterID)"
+            class="images"
           ></van-image>
-          <span class="custom-title" @click="articleDetail(item.ID)">{{ item.Comment }}</span>
+          <van-button class="custom-title">{{ (item.Comment).substring(0,5)+ '...' }}</van-button>
+          <van-collapse v-model="activeName" class="custom-title" @click="articleDetail(item.ID)">
+                <van-collapse-item :title="(item.Comment).substring(0,5) + '...'" name="1">
+                    <span>{{ item.Comment }}</span>
+               </van-collapse-item>
+          </van-collapse> 
         </template>
       <!-- 默认 -->
-      <div>
-          <sapn>{{ (item.CreatedAt).substring(0,10) + ' '+ (item.CreatedAt).substring(11, 19)}}</sapn>
+      <div class="time">
+          <sapn>{{ (item.CreatedAt).substring(0,10) }}</sapn>
       </div>
-      <div slot="label" @click="articleDetail(item.ID)" class="van-ellipsis">{{ item.Comment }}</div>
-      <!-- 少用 -->
-      <!-- <div slot="extra">额外内容</div> -->
+      <div slot="label" class="van-ellipsis"></div>
     </van-cell>
     <!-- 发布按钮 -->
     <van-button icon="plus" type="primary" round to="/home/square/publishDy" class="publish"></van-button>
@@ -30,6 +34,7 @@ export default {
     data() {
         return {
             DynamicList: [],
+            activeNames: '1',
         };
     },
 
@@ -80,5 +85,22 @@ export default {
     position: fixed;
     bottom: 100px;
     left: 315px;
+}
+
+.time{
+    display: flex;
+    height: 20px;
+    width: 4rem;
+    padding-left: 90px;
+    margin-left: -1.8rem;
+}
+.custom-title {
+    width: 4rem;
+    display: flex;
+    margin-top: -1rem;
+    margin-left: 1.55rem;
+}
+.notice {
+   padding-bottom: 1rem;
 }
 </style>

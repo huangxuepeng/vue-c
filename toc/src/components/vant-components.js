@@ -20,8 +20,14 @@ import {
     Loading,
     CellGroup,
     Uploader,
+    Skeleton,
+    Collapse,
+    CollapseItem,
 } from 'vant';
 
+Vue.use(CollapseItem);
+Vue.use(Collapse);
+Vue.use(Skeleton);
 Vue.use(Button);
 Vue.use(Search);
 Vue.use(Toast);

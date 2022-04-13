@@ -1,10 +1,9 @@
 <template>
   <div>
         <van-nav-bar 
-        left-icon="volume-o"
         title="广场" 
         />
-        <van-notice-bar scrollable :text="notice" />
+        <van-notice-bar scrollable left-icon="volume-o" :text="notice" class="notice" />
         <Dynamic></Dynamic>
   </div>
 </template>
@@ -32,6 +31,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.notice {
+    margin-bottom: 0.4rem;
+    height: 0.5rem;
+}
 </style>

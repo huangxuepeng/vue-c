@@ -7,6 +7,11 @@
         :max-count="1"    
         v-model="fileList"
       />
+      <van-collapse v-model="activeName" accordion>
+        <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
+        <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
+        <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
+     </van-collapse>
     </div>
 </template>
 
@@ -19,7 +24,8 @@ export default {
             // iconBase64: '',
             // test: '',
             fileList: [],
-            imgKey:[]
+            imgKey:[],
+            activeName: '1',
         };
     },
     mounted() {
