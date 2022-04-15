@@ -23,6 +23,8 @@ import {
     Skeleton,
     Collapse,
     CollapseItem,
+    Col,
+    Row,
 } from 'vant';
 
 Vue.use(CollapseItem);
@@ -47,3 +49,5 @@ Vue.use(Notify);
 Vue.use(Loading);
 Vue.use(CellGroup);
 Vue.use(Uploader);
+Vue.use(Row);
+Vue.use(Col);

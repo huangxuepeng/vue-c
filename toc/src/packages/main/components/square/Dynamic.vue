@@ -9,18 +9,13 @@
             @click="showUserDetile(item.UserRegisterID)"
             class="images"
           ></van-image>
-          <van-button class="custom-title">{{ (item.Comment).substring(0,5)+ '...' }}</van-button>
-          <van-collapse v-model="activeName" class="custom-title" @click="articleDetail(item.ID)">
-                <van-collapse-item :title="(item.Comment).substring(0,5) + '...'" name="1">
-                    <span>{{ item.Comment }}</span>
-               </van-collapse-item>
-          </van-collapse> 
+          <van-button class="custom-title"  @click="articleDetail(item.ID)">{{ (item.Comment).substring(0,5)+ '...' }}</van-button>
         </template>
       <!-- 默认 -->
       <div class="time">
           <sapn>{{ (item.CreatedAt).substring(0,10) }}</sapn>
       </div>
-      <div slot="label" class="van-ellipsis"></div>
+      <div slot="label" class="van-ellipsis">这是啥</div>
     </van-cell>
     <!-- 发布按钮 -->
     <van-button icon="plus" type="primary" round to="/home/square/publishDy" class="publish"></van-button>
@@ -63,6 +58,9 @@ export default {
             let timeStamp = type.getTime();
             return _timeFormat(timeStamp, 'YY-MM-DD hh:mm:ss');
         },
+        sss(){
+            console.log("jjj");
+        }
     },
 };
 </script>
@@ -96,6 +94,7 @@ export default {
 }
 .custom-title {
     width: 4rem;
+    height: 1.5rem;
     display: flex;
     margin-top: -1rem;
     margin-left: 1.55rem;

@@ -29,4 +29,7 @@ export const UserDetail = (params) => _API('GET', '/u/v1/user/getid/'+params, pa
 export const PublishDynamic = (params) => _API('POST', '/u/v1/dynamic/publishDynamic', params);
 // 根据动态ID获取动态详情
 export const GetDynamicByID = (params) => _API('GET', '/u/v1/dynamic/getDynamicbyid/'+params, params);
-
+// 动态点赞
+export const DynamicLike = (params) => _API('POST', '/u/v1/dynamic/dynamiclike', params);
+// 动态收藏
+export const DynamicStar = (params) => _API('POST', '/u/v1/dynamic/stardynamic', params);
