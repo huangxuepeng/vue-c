@@ -25,9 +25,11 @@ import {
     CollapseItem,
     Col,
     Row,
+    Popover,
 } from 'vant';
 
 Vue.use(CollapseItem);
+Vue.use(Popover);
 Vue.use(Collapse);
 Vue.use(Skeleton);
 Vue.use(Button);

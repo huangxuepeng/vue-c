@@ -4,7 +4,7 @@
         title="广场" 
         />
         <van-notice-bar scrollable left-icon="volume-o" :text="notice" class="notice" />
-        <Dynamic></Dynamic>
+    <Dynamic></Dynamic>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
 // import index from './components/index.vue';
 // 导入不同的组件
 import Home from './components/Home.vue';
-import Searchpop from './components/Searchpop.vue'; 
+// import Searchpop from './components/Searchpop.vue'; 
 import Square from './components/square/Square.vue';
 import Opposite from './components/opposite/opposite.vue';
 import Article from './components/article/Article.vue';
@@ -13,6 +13,7 @@ import Login from './components/Login/Login.vue';
 import ShowUserDetile from '../main/components/square/ShowUserDetile.vue';
 import DyDetail from '../main/components/square/DyDetail.vue';
 import PublishDy from '../main/components/square/publishDy.vue';
+import MainChat from '../main/components/chat/MainChat.vue';
 export default [
     {
         name: 'main',
@@ -26,11 +27,6 @@ export default [
         },
         redirect: '/home/square',
         children: [
-            {
-                path: 'searchpop',
-                name: '搜索',
-                component: Searchpop
-            },
             {
                 path: 'square',
                 name: '广场',
@@ -66,11 +62,7 @@ export default [
                 name: '作者细节',
                 component: ShowUserDetile
             },
-            {
-                path: 'dydetail',
-                name: '动态细节',
-                component: DyDetail
-            },
+
             {
                 path:'square/publishDy',
                 name: '发布动态',
@@ -82,5 +74,15 @@ export default [
         name: '登录',
         path: '/login',
         component: Login,
-    }
+    },
+    {
+        name: '聊天',
+        path: '/chat/withlove',
+        component: MainChat
+    },
+    {
+        path: '/dydetail',
+        name: '动态细节',
+        component: DyDetail
+    },
 ];

@@ -50,7 +50,7 @@ export default {
         },
         articleDetail(id) {
             this.$router.push ({
-                path: '/home/dydetail',
+                path: '/dydetail',
                 query:{id:id},
             });
         },
@@ -58,9 +58,6 @@ export default {
             let timeStamp = type.getTime();
             return _timeFormat(timeStamp, 'YY-MM-DD hh:mm:ss');
         },
-        sss(){
-            console.log("jjj");
-        }
     },
 };
 </script>
