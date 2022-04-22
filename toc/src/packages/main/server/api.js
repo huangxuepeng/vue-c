@@ -33,3 +33,10 @@ export const GetDynamicByID = (params) => _API('GET', '/u/v1/dynamic/getDynamicb
 export const DynamicLike = (params) => _API('POST', '/u/v1/dynamic/dynamiclike', params);
 // 动态收藏
 export const DynamicStar = (params) => _API('POST', '/u/v1/dynamic/stardynamic', params);
+// 发布评论
+export const PushDynamicComment = (params) => _API('POST', '/u/v1/dynamic/pushDynamicComment', params);
+// 评论的回复
+export const PushDynamicCommentReply = (params) => _API('POST', '/u/v1/dynamic/pushDynamicCommentReply', params);
+
+// 异性列表
+export const OppositeSex = (params) => _API('POST', '/u/v1/sex/getoppsitesex', params);

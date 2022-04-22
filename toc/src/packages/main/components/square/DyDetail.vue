@@ -12,7 +12,7 @@
 				width="1.5rem"
 				height="1.5rem"
 				fit="fill"
-				src="https://img01.yzcdn.cn/vant/cat.jpeg"
+				:src="GetDyById.userAvatar"
 				/>
 					<span class="title">题目</span>
 					<span class="time">时间</span>
@@ -20,10 +20,10 @@
 
 		<van-cell-group>
 			<van-cell>
-				<span class="comment">{{ GetDyById.Comment }}</span>
+				<span class="comment">{{ GetDyById.dynamicComment }}</span>
 			</van-cell>
 			<van-cell>
-				<van-image :src="GetDyById.Cover" class="showCover"></van-image>
+				<van-image :src="GetDyById.dynmaicCover" class="showCover"></van-image>
 			</van-cell>
 			<!-- <van-cell>
 				<van-row class="lar">
@@ -36,33 +36,47 @@
 				</van-row>
 			</van-cell> -->
 		</van-cell-group>
+		<van-sticky>
 		<div class="lar">
 		<van-cell>
 				<van-row>
-					<van-col span="10"><van-field value="发表热评~" readonly class="inputs"/></van-col>
+					<van-col span="10">
+						<van-field value="发表热评~" readonly class="inputs"/>
+					</van-col>
 					<van-row>
-						<van-col span="5" v-debounce="likeDynamic"><van-icon name="like-o" size="0.5rem" class="icon1"></van-icon><span class="icon11">点赞</span></van-col>
-						<van-col span="5" v-debounce="comments"><van-icon name="comment-o" size="0.5rem" class="icon2"></van-icon><span class="icon11">评论</span></van-col>
-						<van-col span="4" v-debounce="star"><van-icon name="star-o" size="0.5rem" class="icon3"></van-icon><span class="icon11">收藏</span></van-col>
+						<van-col span="5" v-debounce="likeDynamic">
+							<van-icon name="like-o" size="0.5rem" class="icon1" />
+							  	<span class="icon11">点赞</span>
+						</van-col>
+						<van-col span="5" v-debounce="commentsShowAll">
+							<van-icon name="comment-o" size="0.5rem" class="icon2" />
+								<span class="icon11">评论</span>
+						</van-col>
+						<van-col span="4" v-debounce="star">
+							<van-icon name="star-o" size="0.5rem" class="icon3" />
+								<span class="icon11">收藏</span>
+						</van-col>
 					</van-row>
 				</van-row>
 			</van-cell>
 		</div>
-		<!-- <div class="reply">
-			<van-cell-group v-for="item in sonComments" :key="item.ID">
-				<van-cell :title="item.UserRegisterID" :value="item.Comment"></van-cell>
-					<van-collapse v-model="activeName" accordion>
-						<van-collapse-item  :name="item.UserRegisterID">内容</van-collapse-item>
-					</van-collapse>
-			</van-cell-group>
-		</div> -->
+		</van-sticky>
     </div>
 </template>
 
 <script>
 import { mixin } from '@/mixins/instructions.js';
-import { GetDynamicByID, DynamicLike, DynamicStar } from '../../server/api';
-import { getCookie,setCookie } from '../../../../utils/cookie';
+import { 
+		GetDynamicByID, 
+		DynamicLike, 
+		DynamicStar,
+		PushDynamicComment,
+		PushDynamicCommentReply,
+} from '../../server/api';
+import { 
+		getCookie,
+		setCookie, 
+} from '../../../../utils/cookie';
 import { Notify } from 'vant';
 export default {
 	mixins: [mixin],
@@ -71,12 +85,17 @@ export default {
 			activeName: '0',
 			loading: true,
 			title: '',
-			GetDyById: {},
+			GetDyById: {
+				userAvatar: '',
+				userNickName: '',
+				dynamicComment: '',
+				dynmaicCover: '',
+			},
 			like:{
 				id: 0,
 				user_id: 0,
 			},
-			sonComments:[],
+			comments:[],
         };
     },
 
@@ -90,21 +109,20 @@ export default {
 		},
 		async showDetail() {
 			let id = this.$route.query.id;
+			// console.log(id);
 			try {
 				setCookie('user_id', 1);
 				const res = await GetDynamicByID(id);
 				if (res.code === 200) {
-					this.GetDyById = res.data.data;
-					this.like.id = res.data.data.ID;
-					console.log(res);
+					this.like.id = id;    // 动态ID
 					// 获取存储在本地的Cookie(用户ID)
 					let user_ids = getCookie('user_id');
 					this.like.user_id = user_ids;
-					this.sonComments = res.data.data.FatherComments;
-					// console.log(res);
-					// console.log(user_ids);
-					// console.log(this.like.id);
-					console.log(this.sonComments);
+					this.comments = res.data.data;
+					this.GetDyById.userAvatar = res.data.userAvatar;
+					this.GetDyById.userNickName = res.data.userNickName;
+					this.GetDyById.dynamicComment = res.data.dynamicComment;
+					this.GetDyById.dynmaicCover = res.data.dynamicCover;
 				} else {
 					Notify({ type: 'danger', message:'出错辣~' });
 				}
@@ -117,7 +135,7 @@ export default {
 		async likeDynamic() {
 			try {
 				let res = await DynamicLike(this.like);
-				// console.log(this.like);
+				console.log(this.like);
 				if (res.code === 200) {
 					Notify({ type: 'success', message:'成功' });
 				}
@@ -126,7 +144,8 @@ export default {
 			}
 		},
 		// 评论
-		comments() {
+		commentsShowAll() {
+			this.show = true;
 			console.log('这是评论');
 		},
 		// 收藏
@@ -186,6 +205,18 @@ span{
 }
 .lar{
 	display: fixed;
-	padding-top: 8rem;
+	padding-top: 4.5rem;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.block {
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
 }
 </style>

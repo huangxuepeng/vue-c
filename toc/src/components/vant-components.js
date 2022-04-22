@@ -26,8 +26,12 @@ import {
     Col,
     Row,
     Popover,
+    Sticky,
+    Overlay,
 } from 'vant';
 
+Vue.use(Overlay);
+Vue.use(Sticky);
 Vue.use(CollapseItem);
 Vue.use(Popover);
 Vue.use(Collapse);

@@ -40,7 +40,7 @@ export default {
         async Dynamics() {
             const res = await GetDynamic();
             this.DynamicList = res.data.data;
-            console.log(res.data.data);
+            // console.log(res.data.data);
         },
         showUserDetile(id) {
             this.$router.push ({
@@ -50,7 +50,7 @@ export default {
         },
         articleDetail(id) {
             this.$router.push ({
-                path: '/dydetail',
+                path: '/home/dydetail',
                 query:{id:id},
             });
         },
