@@ -41,6 +41,10 @@ module.exports = merge(baseWebpackConfig, {
             emitError: true,
             failOnWarning: false,
             failOnError: false
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ],
     optimization: {

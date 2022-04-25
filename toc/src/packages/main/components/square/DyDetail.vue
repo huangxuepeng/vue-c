@@ -40,7 +40,7 @@
 		<div class="lar">
 		<van-cell>
 				<van-row>
-					<van-col span="10">
+					<van-col span="10" @click="test">
 						<van-field value="发表热评~" readonly class="inputs"/>
 					</van-col>
 					<van-row>
@@ -61,6 +61,28 @@
 			</van-cell>
 		</div>
 		</van-sticky>
+		<van-popup v-model="show" position="left" :style="{ height: '100%', width: '80%'}" round>
+			<span class="sumcomment">46条评论</span>
+			<van-cell-group>
+				<van-cell>
+					<van-image
+						width="1rem"
+						height="1rem"
+						src="https://img01.yzcdn.cn/vant/cat.jpeg"
+						/>
+					<span class="nickname">这是昵称</span>
+					<span class="content">这是内容</span>
+					<van-collapse v-model="activeNames">
+						<van-collapse-item name="0">
+							<template #title>
+							<div>展开2条回复</div>
+							</template>
+							内容
+						</van-collapse-item>
+					</van-collapse>
+				</van-cell>
+			</van-cell-group>
+		</van-popup>
     </div>
 </template>
 
@@ -96,6 +118,8 @@ export default {
 				user_id: 0,
 			},
 			comments:[],
+			show: true,
+			activeNames: ['1'],
         };
     },
 
@@ -160,11 +184,14 @@ export default {
 				Notify({ type: 'danger', message:'出错辣~' });
 			}
 		},
+		test() {
+			this.show = true;
+		}
     },
 };
 </script>
 
-<style langs="less" scoped>
+<style lang="less" scoped>
 span{
 	display: flex;
 
@@ -218,5 +245,28 @@ span{
     width: 120px;
     height: 120px;
     background-color: #fff;
+}
+.sumcomment {
+	font-size: 20px;
+	margin-left: 30%;
+}
+/deep/ .van-image__img {
+	border-radius: 10px;
+}
+.nickname {
+    display: flex;
+	font-weight:bold;
+	margin-left: 1rem;
+	color: #565E7D;
+	margin-top: -1.1rem;
+}
+.content {
+    display: flex;
+	font-size: 18px;
+	margin-left: 1rem;	
+}
+/deep/ .van-cell.van-cell--clickable.van-collapse-item__title {
+	width: 3rem;
+	margin-left: 0.9rem;
 }
 </style>

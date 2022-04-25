@@ -28,8 +28,14 @@ import {
     Popover,
     Sticky,
     Overlay,
+    Divider,
+    Popup,
+    // Style,
 } from 'vant';
 
+Vue.use(Popup);
+// Vue.use(Style);
+Vue.use(Divider);
 Vue.use(Overlay);
 Vue.use(Sticky);
 Vue.use(CollapseItem);

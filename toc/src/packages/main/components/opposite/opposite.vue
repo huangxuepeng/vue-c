@@ -8,7 +8,24 @@
     @load="onLoad"
   >
     <van-cell v-for="item in list" :key="item.id">
-     <!-- 显示异性的样式 -->
+      <div class="user">
+          <van-image
+          round
+          fit="fill"
+          width="2rem"
+          height="2rem"
+          :src="item.Avatar"
+          class="imageself"
+          @click="showUserDetile(item.ID)"
+        />
+          <span class="nick">{{ item.NickName }}</span>
+          <span class="unqireid">CCUID: {{ item.StudentNumber }}</span>
+          <span class="description" v-if="1===0">if</span>
+          <span class="description" v-else><div class="van-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略快来联系我吧~</div></span>
+          <!-- 发消息 -->
+          <van-button type="default" class="btn" round>发消息</van-button>
+      </div>
+      <van-divider />
     </van-cell>
   </van-list>
   </div>
@@ -21,7 +38,9 @@ import {
     setCookie,
 } from '../../../../utils/cookie';
 import { OppositeSex } from '../../server/api';
+import { mixin } from '@/mixins/instructions.js';
 export default {
+    mixins: [mixin],
     data() {
         return {
           list: [],
@@ -30,7 +49,7 @@ export default {
           finished: false,
           params: {
             sex: '',
-          }
+          },
         };
     },
     mounted() {
@@ -39,6 +58,7 @@ export default {
     methods: {
       // 获取异性列表, 并且完成赋值
       async getOppositeSexList() {
+        setCookie('user_sex', 1)
         let sex = getCookie('user_sex');
         this.params.sex = sex;
         const res = await OppositeSex(this.params);
@@ -63,12 +83,47 @@ export default {
         let timer = setTimeout(() => {	// 定时器仅针对本地数据渲染动画效果,项目中axios请求不需要定时器
         this.getOppositeSexList();				// 调用上面方法,请求数据
         this.finished && clearTimeout(timer);//清除计时器
-      }, 1000);
+        }, 100);
       },
+      showUserDetile(id) {
+          this.$router.push ({
+              path: '/home/detail',
+              query:{id:id},
+            });
+        },
     },
 };
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.user{
+  height: 2rem;
+}
+/* 昵称 */
+.nick {
+    font-style: normal;
+    font-size: 0.5rem;
+    display: flex;
+    margin-left: 2.5rem;
+    margin-top: -2rem;
+}
+/* 唯一ID */
+.unqireid {
+    font-size: 0.3rem;
+    display: flex;
+    margin-left: 2.5rem;
+    /* margin-top: -2.5rem; */
+}
+.description {
+  display: flex;
+  margin-left: 2.5rem;
+}
+.btn {
+  display: flex;
+  margin-top: -1.3rem;
+  height: 0.56rem;
+  margin-left: 5.3rem;
+  color: orange;
+  border-color: orange;
+}
 </style>

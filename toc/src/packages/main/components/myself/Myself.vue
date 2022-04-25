@@ -11,14 +11,13 @@
         :src="user.userAvatar"
         class="imageself"
       />
-        <span class="nick">{{user.userNickName}}</span>
+        <span class="nick">{{ user.userNickName }}</span>
         <span class="unqireid">CCUID: {{ user.userStuNum }}</span>
     </div>
     <van-cell-group class="detail">
-      <van-cell title="我的动态" is-link/>
-      <van-cell title="基本资料" is-link/>
-      <van-cell title="实名认证" is-link/>
-      <van-cell title="我的CD币" is-link/>
+      <van-cell title="我的动态" is-link v-debounce="myDynamic"/>
+      <van-cell title="基本资料" is-link v-debounce="myBase"/>
+      <van-cell title="实名认证" is-link v-debounce="myRealName"/>
     </van-cell-group>
     <van-button type="warning" class="logout" @click="logout">退出登录</van-button>
   </div>
@@ -26,13 +25,15 @@
 
 <script>
 import { 
-  getCookie,
+    getCookie,
     removeCookie,
     setCookie,
 } from '../../../../utils/cookie';
 import { Notify } from 'vant';
 import { UserDetail } from '../../server/api';
+import { mixin } from '@/mixins/instructions.js';
 export default {
+  	mixins: [mixin],
     data() {
         return {
           user:{
@@ -66,6 +67,16 @@ export default {
             Notify({type:'danger', message: '加载失败'})
           }
 
+      },
+      // 我的所有动态
+      myDynamic() {
+        console.log('我的动态');
+      },
+      myBase() {
+        console.log('我的基本资料');
+      },
+      myRealName() {
+        console.log('实名认证');
       }
     }
 };

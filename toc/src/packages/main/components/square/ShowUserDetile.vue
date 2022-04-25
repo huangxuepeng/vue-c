@@ -6,28 +6,43 @@
 		left-arrow
 		@click-left="onClickLeft"
 		/>
+        <!-- 骨架屏 -->
         <van-skeleton title avatar :row="3" :loading="loading">
-            <van-image
-            fit="fill"
-            width="1.5rem"
-            height="1.5rem"
-            round
-            :src="user.Avatar"
-            ></van-image>
-            <van-button type="default" hairline plain class="btn">关注</van-button>
+            <div class="header">
+                <van-image
+                fit="fill"
+                width="1.8rem"
+                height="1.8rem"
+                round
+                :src="user.Avatar"
+                ></van-image>
+                <van-button type="default" hairline plain class="btn" @click="concern" round>关注</van-button>
+            </div>
+            <van-divider />
+            <div>
+                <van-row type="flex" justify="space-around">
+                    <van-col span="6">
+                        <van-button type="success">动态</van-button>
+                    </van-col>
+                    <van-col span="6">
+                        <van-button type="success">文章</van-button>
+                    </van-col>
+                </van-row>
+            </div>
         </van-skeleton>
     </div>
 </template>
 <script>
 import { UserDetail } from '../../server/api';
+import { mixin } from '@/mixins/instructions.js';
 export default {
+    mixins: [mixin],
     data() {
         return {
             nickname: '',
             Articless: [],
             loading: false,
-            user: {
-            }
+            user: {},
         };
     },
 
@@ -38,7 +53,6 @@ export default {
     methods: {
         async showUserdetail() {
             var id = this.$route.query.id;
-            // console.log(id);    // 测试ID传递
             try {
                 const res = await UserDetail(id);
                 if (res.code === 200) {
@@ -46,7 +60,7 @@ export default {
 					this.loading = false;
                     this.user = res.data.data;
 					this.nickname = res.data.data.NickName;
-                    // console.log(res.data.data);
+                    console.log(res.data.data);
 				} 
 		    } catch (err) {
 				 Notify({ type: 'danger', message: '加载失败' });
@@ -55,13 +69,23 @@ export default {
 		    onClickLeft() {
             this.$router.go(-1);
         },
+        // 关注用户
+        concern() {
+            console.log('关注');
+        }
     },
 };
 </script>
 <style lang="less" scoped>
-.van-button {
+.header {
+    height: 2rem;
+}
+.btn {
     display: flex;
-    margin-left: 6rem;
-    margin-top: -1.4rem;
+    margin-top: -1.5rem;
+    height: 0.56rem;
+    margin-left: 5.8rem;
+    color: orange;
+    border-color: orange;
 }
 </style>

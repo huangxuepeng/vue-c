@@ -60,7 +60,10 @@ export default [
             {
                 path: 'detail',
                 name: '作者细节',
-                component: ShowUserDetile
+                component: ShowUserDetile,
+                children: [
+
+                ]
             },
 
             {
