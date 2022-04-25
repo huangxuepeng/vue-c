@@ -1,6 +1,6 @@
 <template>
   <div>
-      <van-cell v-for="item in DynamicList">
+      <van-cell v-for="item in DynamicList" :key="item.ID">
 		<van-image
 			round
 			width="1.5rem"
@@ -9,6 +9,11 @@
 			:src="item.DynamicUserAvatar"
             @click=" showUserDetail(item.DynamicUserID)"
 		/>
+        <span>{{ item.DynamicUserNickname}}</span>
+        <span></span>
+        <span @click="articleDetail(item.DynamicID)">
+            {{ item.DynamicComment }}
+        </span>
         <!-- <van-divider /> -->
       </van-cell>
         <van-divider />

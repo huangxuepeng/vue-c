@@ -13,11 +13,9 @@
 				height="1.5rem"
 				fit="fill"
 				:src="GetDyById.userAvatar"
-				/>
-					<span class="title">题目</span>
-					<span class="time">时间</span>
+				/>			
 		</div>
-
+		<span class="title"></span>
 		<van-cell-group>
 			<van-cell>
 				<span class="comment">{{ GetDyById.dynamicComment }}</span>
@@ -25,16 +23,6 @@
 			<van-cell>
 				<van-image :src="GetDyById.dynmaicCover" class="showCover"></van-image>
 			</van-cell>
-			<!-- <van-cell>
-				<van-row class="lar">
-					<van-col span="10"><van-field value="发表热评~" readonly class="inputs"/></van-col>
-					<van-row>
-						<van-col span="5" v-debounce="likeDynamic"><van-icon name="like-o" size="0.5rem" class="icon1"></van-icon><span class="icon11">点赞</span></van-col>
-						<van-col span="5" v-debounce="comments"><van-icon name="comment-o" size="0.5rem" class="icon2"></van-icon><span class="icon11">评论</span></van-col>
-						<van-col span="4" v-debounce="star"><van-icon name="star-o" size="0.5rem" class="icon3"></van-icon><span class="icon11">收藏</span></van-col>
-					</van-row>
-				</van-row>
-			</van-cell> -->
 		</van-cell-group>
 		<van-sticky>
 		<div class="lar">
@@ -61,7 +49,6 @@
 			</van-cell>
 		</div>
 		</van-sticky>
-		<van-popup v-model="show" position="left" :style="{ height: '80%', width: '100%'}" round>
 			<span class="sumcomment">{{ this.total }}条评论</span>
 			<van-cell-group  v-for="item in comments" :key="item.ID">
 				<van-cell>
@@ -92,7 +79,6 @@
 					</van-collapse>
 				</van-cell>
 			</van-cell-group>
-		</van-popup>
     </div>
 </template>
 
@@ -216,18 +202,19 @@ span{
 	display: flex;
 	/* justify-content: space-evenly; */
 	padding-left: 4px;
+	width: 8rem;
 }
-.title{
-	display: flex;
-	font-size: 0.5rem;
-	padding-left: 10px;
-}
-.time{
-	display: flex;
-	font-size: 0.1rem;
-	padding-top: 1.1rem;
-	padding-left: 3.5rem;
-}
+// .title{
+// 	// display: flex;
+// 	font-size: 0.5rem;
+// 	padding-left: 10px;
+// }
+// .time{
+// 	// display: flex;
+// 	font-size: 0.1rem;
+// 	padding-top: 1.1rem;
+// 	padding-left: 3.5rem;
+// }
 .comment {
 	text-indent: 0.5rem;
 	letter-spacing: 0.03rem;
@@ -246,7 +233,7 @@ span{
 }
 .lar{
 	display: fixed;
-	padding-top: 4.5rem;
+	// padding-top: 4.5rem;
 }
 .wrapper {
     display: flex;
@@ -283,4 +270,5 @@ span{
 	width: 3rem;
 	margin-left: 0.9rem;
 }
+
 </style>
