@@ -61,23 +61,33 @@
 			</van-cell>
 		</div>
 		</van-sticky>
-		<van-popup v-model="show" position="left" :style="{ height: '100%', width: '80%'}" round>
-			<span class="sumcomment">46条评论</span>
-			<van-cell-group>
+		<van-popup v-model="show" position="left" :style="{ height: '80%', width: '100%'}" round>
+			<span class="sumcomment">{{ this.total }}条评论</span>
+			<van-cell-group  v-for="item in comments" :key="item.ID">
 				<van-cell>
 					<van-image
 						width="1rem"
 						height="1rem"
-						src="https://img01.yzcdn.cn/vant/cat.jpeg"
+						:src="item.Avatar"
 						/>
-					<span class="nickname">这是昵称</span>
-					<span class="content">这是内容</span>
+					<span class="nickname" @click="showFatherComment(item)">{{ item.NickName }}</span>
+					<span class="content">{{ item.Comment }}</span>
 					<van-collapse v-model="activeNames">
-						<van-collapse-item name="0">
+						<van-collapse-item v-if="item.SonID.length !== 0">
 							<template #title>
-							<div>展开2条回复</div>
+							<div>展开{{ item.SonID.length }}条回复</div>
 							</template>
-							内容
+							<van-cell-group v-for="sonItem in item.SonID" :key="sonItem.ID">
+								<van-cell>
+									<van-image
+										width="1rem"
+										height="1rem"
+										:src="sonItem.Avatarson"
+										/>
+								<span class="nickname" @click="showFatherComment(item)">{{ sonItem.NickNameson }}</span>
+								<span class="content">{{ sonItem.Commentson }}</span>
+								</van-cell>
+							</van-cell-group>
 						</van-collapse-item>
 					</van-collapse>
 				</van-cell>
@@ -118,8 +128,9 @@ export default {
 				user_id: 0,
 			},
 			comments:[],
-			show: true,
+			show: false,
 			activeNames: ['1'],
+			total: 0,
         };
     },
 
@@ -147,6 +158,8 @@ export default {
 					this.GetDyById.userNickName = res.data.userNickName;
 					this.GetDyById.dynamicComment = res.data.dynamicComment;
 					this.GetDyById.dynmaicCover = res.data.dynamicCover;
+					this.total = res.data.total;
+					console.log(res.data.data);
 				} else {
 					Notify({ type: 'danger', message:'出错辣~' });
 				}
@@ -170,7 +183,8 @@ export default {
 		// 评论
 		commentsShowAll() {
 			this.show = true;
-			console.log('这是评论');
+			console.log(this.comments);
+			
 		},
 		// 收藏
 		async star() {

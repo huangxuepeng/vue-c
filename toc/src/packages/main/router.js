@@ -71,11 +71,6 @@ export default [
                 name: '发布动态',
                 component: PublishDy
             },
-            {
-                path: 'dydetail',
-                name: '动态细节',
-                component: DyDetail
-            },
         ]
     },
     {
@@ -87,6 +82,11 @@ export default [
         name: '聊天',
         path: '/chat/withlove',
         component: MainChat
+    },
+    {
+        path: '/dynamic/dydetail',
+        name: '动态细节',
+        component: DyDetail
     },
   
 ];
