@@ -10,6 +10,7 @@
         <router-view />
     </div>
 </template>
+
 <script>
 // import { Test } from '../server/api.js';
 // import AppTabbar from './AppTabbar.vue';
@@ -19,6 +20,7 @@ export default {
     },
     data() {
         return {
+            active: 0,
             // notices: '电脑中冲锋的声音',
         };
     },

@@ -32,7 +32,7 @@
 						<van-field value="发表热评~" readonly class="inputs"/>
 					</van-col>  
 					<van-row>
-						<van-col span="5" v-debounce="likeDynamic" v-if="this.likeStatus === 1">
+						<van-col span="5" v-debounce="likeDynamic" v-if="this.likeAndStarStatus.likeStatus === 1">
 							<van-icon name="like" size="0.5rem" class="icon1" color="#ee0a24" />
 							  	<span class="icon11">点赞</span>
 						</van-col>
@@ -44,7 +44,7 @@
 							<van-icon name="comment-o" size="0.5rem" class="icon2"/>
 								<span class="icon11">评论</span>
 						</van-col>
-						<van-col span="4" v-debounce="star" v-if="this.starStatus === 1">
+						<van-col span="4" v-debounce="star" v-if="this.likeAndStarStatus.starStatus === 1">
 							<van-icon name="star" size="0.5rem" class="icon3" color="#ee0a24"/>
 								<span class="icon11">收藏</span>
 						</van-col>
@@ -126,15 +126,16 @@ export default {
 			show: false,
 			activeNames: ['1'],
 			total: 0,
-			likeStatus: 0,
-			starStatus: 0,
+			likeAndStarStatus: {
+				likeStatus: 0,
+				starStatus: 0,
+			},			
         };
     },
 
     mounted () {
         this.loading = true;
 		this.showDetail();
-		this.getStatus();
     },
     methods: {
 		onClickLeft() {
@@ -157,7 +158,8 @@ export default {
 					this.GetDyById.dynamicComment = res.data.dynamicComment;
 					this.GetDyById.dynmaicCover = res.data.dynamicCover;
 					this.total = res.data.total;
-					console.log(res.data.data);
+					// console.log(res);
+					this.getStatus();
 				} else {
 					Notify({ type: 'danger', message:'出错辣~' });
 				}
@@ -170,11 +172,9 @@ export default {
 		async likeDynamic() {
 			try {
 				let res = await DynamicLike(this.like);
-				// console.log(this.like);
-				console.log(res);
 				if (res.code === 200) {
 					Notify({ type: 'success', message:'成功' });
-					this.likeStatus = res.data.data;
+					this.showDetail();
 				}
 			} catch (err) {
 				Notify({ type: 'danger', message:'出错辣~' });
@@ -193,6 +193,7 @@ export default {
 				// console.log(res);
 				if (res.code === 200) {
 					Notify({ type: 'success', message:'成功' });
+					this.showDetail();
 				}
 			} catch (err) {
 				Notify({ type: 'danger', message:'出错辣~' });
@@ -200,7 +201,9 @@ export default {
 		},
 		async getStatus() {
 			const res = await GetDynamicLikeAndStarStatus(this.like);
-			console.log('kkk');
+			console.log(res.data);
+			this.likeAndStarStatus.likeStatus = res.data.dynamicLikeStatus
+			this.likeAndStarStatus.starStatus = res.data.dynamicStarStatus
 		}
     },
 };

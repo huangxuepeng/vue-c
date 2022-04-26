@@ -1,76 +1,96 @@
 <template>
     <div>
-
-      <van-uploader 
-        :after-read="afterRead"
-        class="img-uploader"
-        :max-count="1"    
-        v-model="fileList"
-      />
-      <van-collapse v-model="activeName" accordion>
-        <van-collapse-item title="标题1" name="1">内容</van-collapse-item>
-        <van-collapse-item title="标题2" name="2">内容</van-collapse-item>
-        <van-collapse-item title="标题3" name="3">内容</van-collapse-item>
-     </van-collapse>
-    <van-cell is-link @click="test">展示弹出层</van-cell>
-    <van-popup v-model="show">内容</van-popup>
+        <van-nav-bar
+        title="写说说"
+        left-text="取消"
+        right-text="发表"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+        />
+        <!-- 发表言论 -->
+        <van-cell-group inset>
+        <van-field
+            v-model="DyPost.comment"
+            rows="5"
+            autosize
+            type="textarea"
+            placeholder="分享新鲜事..."
+            border
+        />
+        <!-- 发表图片 -->
+        </van-cell-group>
+        <div class="credential-infor">
+            <van-uploader 
+            :after-read="afterRead"
+            v-model="fileList"  
+            multiple  />
+        </div>
     </div>
 </template>
 
 <script>
-
+import { PublishDynamic } from '../../server/api';
+import { getCookie, setCookie } from '../../../../utils/cookie';
+import { Notify } from 'vant';
 export default {
     data() {
-        return {
-            // fileValue: '',
-            // iconBase64: '',
-            // test: '',
+        return{
             fileList: [],
-            imgKey:[],
-            activeName: '1',
-            show: false,
+            DyPost: {
+                type: 'test',
+                cover: '',
+                comment:'',
+                user_id: '',
+            },  
+            
         };
     },
     mounted() {
-        this.getArticleList();
     },
     methods: {
-        ShowArticle(id) {
-            this.$router.push ({
-                path: '/home/showArticle',
-                query:{id:id},
-            });
+        // 返回按钮
+        onClickLeft() {
+            this.$router.go(-1);
         },
-
+        // 发表动态
+        async onClickRight() {
+            try {
+                const res = await PublishDynamic(this.DyPost);
+                if (res.code === 200) {
+                    Notify({ type: 'success', message:'发表成功'});
+                    this.$router.go(-1);
+                }
+            } catch (err) {
+                Notify({ type: 'danger', message:'发表失败' });
+            }
+            
+        },
         afterRead(file) {
-        // 此时可以自行将文件上传至服务器
-            let imgFile = new FormData();
-            imgFile.append('fileType', 'IMAGE');
-            imgFile.append('file', this.fileList[0].file);
-            console.log(file.content.length);
+            setCookie('1'); //应该放在登录的地方
+            // console.log(getCookie('user_id'));
+            // this.cover = file;
+            // 此时可以自行将文件上传至服务器，这里就是要写调用后台上传图片的接口位置
+            this.DyPost.cover = file.content;
+            this.DyPost.user_id = getCookie('user_id');
         },
-        test () {
-            this.show = true;
-        }
-        // ImageToBase64() {
-        //     let files = document.getElementById('upImageFile').files[0];
-        //     var reader = new FileReader();
-        //     reader.readAsDataURL(files);
-        //     reader.onload = () => {
-        //         console.log('file 转 base64结果：' + reader.result);
-        //         console.log((reader.result).length);
-        //         this.test = reader.result;
-        //         this.iconBase64 = reader.result;
-        //     };
-        //     reader.onerror = function (error) {
-        //         console.log('Error: ', error);
-        //     };
-        // }
-     
-    },
+    }
 };
 </script>
 
-<style lang="less" scoped>
 
+<style lang="less" scoped>
+.van-nav-bar {
+    background-color: antiquewhite;
+}
+.van-cell{
+    width: 10rem;
+}
+.file-uploader {
+  .credential-infor {
+    margin: px2em(20);
+    height: px2em(100);
+  }
+
+}
 </style>

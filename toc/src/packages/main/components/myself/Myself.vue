@@ -15,8 +15,8 @@
         <span class="unqireid">CCUID: {{ user.userStuNum }}</span>
     </div>
     <van-cell-group class="detail">
-      <van-cell title="我的动态" is-link v-debounce="myDynamic"/>
-      <van-cell title="基本资料" is-link v-debounce="myBase"/>
+      <van-cell title="我的动态" is-link @click="myDynamic(user.userID)"/>
+      <van-cell title="基本资料" is-link @click="myBase(user.userID)"/>
       <van-cell title="实名认证" is-link v-debounce="myRealName"/>
       <van-cell title="我的关注" is-link v-debounce="myConcern"/>
     </van-cell-group>
@@ -27,7 +27,6 @@
 <script>
 import { 
     getCookie,
-    removeCookie,
     setCookie,
 } from '../../../../utils/cookie';
 import { Notify } from 'vant';
@@ -41,6 +40,7 @@ export default {
             userAvatar: '',
             userNickName: '',
             userStuNum: '',
+            userID: 0,
           },
         };
     },
@@ -63,6 +63,7 @@ export default {
               this.user.userAvatar = res.data.data.Avatar;
               this.user.userNickName = res.data.data.NickName;
               this.user.userStuNum = res.data.data.StudentNumber;
+              this.user.userID = res.data.data.ID;
               // console.log(res.data.data);
           } catch (err) {
             Notify({type:'danger', message: '加载失败'})
@@ -70,17 +71,23 @@ export default {
 
       },
       // 我的所有动态
-      myDynamic() {
-        console.log('我的动态');
+      myDynamic(id) {
+        this.$router.push({
+          path: '/home/myself/myDyanmics',
+          query:{id:id},
+        })
       },
-      myBase() {
-        console.log('我的基本资料');
+      myBase(id) {
+        this.$router.push({
+          path:'/home/myself/baseInformation',
+          query:{id:id},
+        })
       },
       myRealName() {
         console.log('实名认证');
       },
       myConcern() {
-
+        console.log('我的关注');
       },
     }
 };
@@ -94,7 +101,7 @@ export default {
     border-radius: 0.4rem;
     width: 5rem;
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
 
 }
 .detail {

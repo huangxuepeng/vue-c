@@ -30,12 +30,10 @@ import {
     Overlay,
     Divider,
     Popup,
-    // Style,
     Badge,
 } from 'vant';
 
 Vue.use(Popup);
-// Vue.use(Style);
 Vue.use(Divider);
 Vue.use(Overlay);
 Vue.use(Sticky);

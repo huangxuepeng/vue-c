@@ -6,7 +6,7 @@ import Home from './components/Home.vue';
 import Square from './components/square/Square.vue';
 import Opposite from './components/opposite/opposite.vue';
 import Article from './components/article/Article.vue';
-import ShowArticle from './components/article/ShowArticle.vue';
+// import ShowArticle from './components/article/ShowArticle.vue';
 import Message from './components/message/Message.vue';
 import Myself from './components/myself/Myself.vue';
 import Login from './components/Login/Login.vue';
@@ -15,6 +15,8 @@ import DyDetail from '../main/components/square/DyDetail.vue';
 import PublishDy from '../main/components/square/publishDy.vue';
 import MainChat from '../main/components/chat/MainChat.vue';
 import Chat from './components/message/Chat.vue';
+import BaseInformation from './components/myself/BaseInformation.vue';
+import MyselfAllDynamic from './components/myself/MyselfAllDynamic.vue';
 export default [
     {
         name: 'main',
@@ -43,11 +45,11 @@ export default [
                 name: '文章',
                 component: Article
             },
-            {
-                path: 'showArticle',
-                name: '显示文章的内容',
-                component: ShowArticle
-            },
+            // {
+            //     path: 'showArticle',
+            //     name: '显示文章的内容',
+            //     component: ShowArticle
+            // },
             {
                 path: 'message',
                 name: '信息',
@@ -56,15 +58,12 @@ export default [
             {
                 path: 'myself',
                 name: '我的',
-                component: Myself
+                component: Myself,
             },
             {
                 path: 'detail',
                 name: '作者细节',
                 component: ShowUserDetile,
-                children: [
-
-                ]
             },
 
             {
@@ -91,9 +90,19 @@ export default [
         component: MainChat
     },
     {
-        path: '/dynamic/dydetail',
         name: '动态细节',
+        path: '/dynamic/dydetail',
         component: DyDetail
+    },
+    {
+        name: '我的基本资料',
+        path: '/home/myself/baseInformation',
+        component: BaseInformation
+    },
+    {
+        name: '我的动态',
+        path: '/home/myself/myDyanmics',
+        component: MyselfAllDynamic
     },
   
 ];

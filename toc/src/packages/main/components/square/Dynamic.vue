@@ -38,7 +38,7 @@ export default {
         async Dynamics() {
             const res = await GetDynamic();
             this.DynamicList = res.data.data;
-            console.log(res.data.data);
+            // console.log(res.data.data);
         },
         showUserDetail(id) {
             this.$router.push ({
