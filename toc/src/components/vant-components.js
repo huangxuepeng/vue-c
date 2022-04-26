@@ -31,6 +31,7 @@ import {
     Divider,
     Popup,
     // Style,
+    Badge,
 } from 'vant';
 
 Vue.use(Popup);
@@ -63,3 +64,4 @@ Vue.use(CellGroup);
 Vue.use(Uploader);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Badge);
