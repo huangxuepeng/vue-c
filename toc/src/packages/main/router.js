@@ -14,6 +14,7 @@ import ShowUserDetile from '../main/components/square/ShowUserDetile.vue';
 import DyDetail from '../main/components/square/DyDetail.vue';
 import PublishDy from '../main/components/square/publishDy.vue';
 import MainChat from '../main/components/chat/MainChat.vue';
+import Chat from './components/message/Chat.vue';
 export default [
     {
         name: 'main',
@@ -70,6 +71,12 @@ export default [
                 path:'square/publishDy',
                 name: '发布动态',
                 component: PublishDy
+            },
+
+            {
+                path: 'chat',
+                name: '聊天',
+                component: Chat
             },
         ]
     },
