@@ -18,6 +18,7 @@
       <van-cell title="我的动态" is-link v-debounce="myDynamic"/>
       <van-cell title="基本资料" is-link v-debounce="myBase"/>
       <van-cell title="实名认证" is-link v-debounce="myRealName"/>
+      <van-cell title="我的关注" is-link v-debounce="myConcern"/>
     </van-cell-group>
     <van-button type="warning" class="logout" @click="logout">退出登录</van-button>
   </div>
@@ -77,7 +78,10 @@ export default {
       },
       myRealName() {
         console.log('实名认证');
-      }
+      },
+      myConcern() {
+
+      },
     }
 };
 </script>

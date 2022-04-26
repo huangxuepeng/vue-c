@@ -28,19 +28,27 @@
 		<div class="lar">
 		<van-cell>
 				<van-row>
-					<van-col span="10" @click="test">
+					<van-col span="10">
 						<van-field value="发表热评~" readonly class="inputs"/>
-					</van-col>
+					</van-col>  
 					<van-row>
-						<van-col span="5" v-debounce="likeDynamic">
-							<van-icon name="like-o" size="0.5rem" class="icon1" />
+						<van-col span="5" v-debounce="likeDynamic" v-if="this.likeStatus === 1">
+							<van-icon name="like" size="0.5rem" class="icon1" color="#ee0a24" />
+							  	<span class="icon11">点赞</span>
+						</van-col>
+						<van-col span="5" v-debounce="likeDynamic" v-else>
+							<van-icon name="like-o" size="0.5rem" class="icon1"/>
 							  	<span class="icon11">点赞</span>
 						</van-col>
 						<van-col span="5" v-debounce="commentsShowAll">
-							<van-icon name="comment-o" size="0.5rem" class="icon2" />
+							<van-icon name="comment-o" size="0.5rem" class="icon2"/>
 								<span class="icon11">评论</span>
 						</van-col>
-						<van-col span="4" v-debounce="star">
+						<van-col span="4" v-debounce="star" v-if="this.starStatus === 1">
+							<van-icon name="star" size="0.5rem" class="icon3" color="#ee0a24"/>
+								<span class="icon11">收藏</span>
+						</van-col>
+						<van-col span="4" v-debounce="star" v-else>
 							<van-icon name="star-o" size="0.5rem" class="icon3" />
 								<span class="icon11">收藏</span>
 						</van-col>
@@ -90,6 +98,7 @@ import {
 		DynamicStar,
 		PushDynamicComment,
 		PushDynamicCommentReply,
+		GetDynamicLikeAndStarStatus,
 } from '../../server/api';
 import { 
 		getCookie,
@@ -117,12 +126,15 @@ export default {
 			show: false,
 			activeNames: ['1'],
 			total: 0,
+			likeStatus: 0,
+			starStatus: 0,
         };
     },
 
     mounted () {
         this.loading = true;
 		this.showDetail();
+		this.getStatus();
     },
     methods: {
 		onClickLeft() {
@@ -158,9 +170,11 @@ export default {
 		async likeDynamic() {
 			try {
 				let res = await DynamicLike(this.like);
-				console.log(this.like);
+				// console.log(this.like);
+				console.log(res);
 				if (res.code === 200) {
 					Notify({ type: 'success', message:'成功' });
+					this.likeStatus = res.data.data;
 				}
 			} catch (err) {
 				Notify({ type: 'danger', message:'出错辣~' });
@@ -184,8 +198,9 @@ export default {
 				Notify({ type: 'danger', message:'出错辣~' });
 			}
 		},
-		test() {
-			this.show = true;
+		async getStatus() {
+			const res = await GetDynamicLikeAndStarStatus(this.like);
+			console.log('kkk');
 		}
     },
 };
@@ -221,7 +236,8 @@ span{
 	font-size: 0.4rem;
 }
 .showCover {
-	width: 2rem;
+	width: 3rem;
+	height: auto;
 }
 .inputs.van-cell.van-field {
 	margin-left: -15px;
@@ -270,5 +286,4 @@ span{
 	width: 3rem;
 	margin-left: 0.9rem;
 }
-
 </style>

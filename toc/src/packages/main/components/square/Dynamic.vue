@@ -7,11 +7,11 @@
 			height="1.5rem"
 			fit="fill"
 			:src="item.DynamicUserAvatar"
-            @click=" showUserDetail(item.DynamicUserID)"
+            @click="showUserDetail(item.DynamicUserID)"
 		/>
-        <span>{{ item.DynamicUserNickname}}</span>
-        <span></span>
-        <span @click="articleDetail(item.DynamicID)">
+        <span class="nickname">{{ item.DynamicUserNickname}}</span>
+        <van-tag type="danger">{{ item.UserConstellation}}</van-tag>
+        <span @click="articleDetail(item.DynamicID)" class="comment">
             {{ item.DynamicComment }}
         </span>
         <!-- <van-divider /> -->
@@ -66,5 +66,18 @@ export default {
     bottom: 100px;
     left: 315px;
 }
-
+.nickname {
+    display: flex;
+    margin-top: -1.5rem;
+    margin-left: 1.8rem;
+    font-size: 20px;
+}
+.comment {
+    display: flex;
+    margin-top: 0.5rem;
+    margin-left: 1.7rem;
+}
+.van-tag.van-tag--danger {
+    margin-left: 1.85rem;
+}
 </style>
