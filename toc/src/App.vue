@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import AppTabbar from '../src/packages/main/components/AppTabbar.vue';
+import AppTabbar from  '../src/packages/main/components/AppTabbar.vue';
 export default {
 
     name: 'App',
