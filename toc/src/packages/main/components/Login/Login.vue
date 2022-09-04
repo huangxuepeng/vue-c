@@ -67,8 +67,8 @@ export default {
                 const res = await Login({'mobile':this.user.mobile,'password':this.user.password});
                 if (res.code === 200) {
                     Notify({ type: 'success', message: '登录成功' });
-                    console.log(res);
                     setCookie(res.data.id);
+                    this.$router.push("/home/square");
                 }
             } catch(err) {
                 Notify({ type: 'danger', message: '登录失败' });

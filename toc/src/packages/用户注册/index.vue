@@ -6,11 +6,12 @@
 
 <script>
 export default {
-    name: 'index',
+    name:'用户注册',
     data() {
         return {};
-    }
+    }    
 };
 </script>
-<style lang="" scoped>
+<style lang="less" scoped>
+
 </style>

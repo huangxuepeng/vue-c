@@ -28,7 +28,8 @@ export default [
                 description:'完成所有的操作'
             }
         },
-        redirect: '/home/square',
+        // redirect: '/home/square',
+        redirect: '/login',
         children: [
             {
                 path: 'square',
