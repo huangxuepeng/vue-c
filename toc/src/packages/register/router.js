@@ -2,17 +2,17 @@
 import index from './index.vue';
 
 // 导入不同的组件
-import testA from './views/用户注册/index.vue';
-
+// import testA from './views/register/index.vue';
+import register from './components/register.vue';
 export default [
     {
-        name: '用户注册',
+        name: 'register',
         path: '/register',
         component: index,
         mata: {
             title: 'Example-out',
             content:{
-                description:'用户的注册'
+                description:'用户注册'
             }
         },
         redirect: '/register/testA',
@@ -20,7 +20,7 @@ export default [
             {
                 name: 'Example-insert',
                 path: '/register/testA',
-                component: testA
+                component: register
             }
         ]
     }

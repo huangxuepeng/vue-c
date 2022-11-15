@@ -41,12 +41,13 @@
 import { Login } from '../../server/api';
 import { Notify } from 'vant';
 import { setCookie } from '@/utils/cookie.js';
+import selectionApi from 'caniuse-lite/data/features/selection-api';
 export default {
     data() {
         return {
             user: {
-                mobile: '',
-                password: '',
+                mobile: '18088630924',
+                password: '12345678',
             },
             isLoading : false,
         };
@@ -66,10 +67,11 @@ export default {
             try{
                 const res = await Login({'mobile':this.user.mobile,'password':this.user.password});
                 if (res.code === 200) {
-                    Notify({ type: 'success', message: '登录成功' });
-                    setCookie(res.data.id);
-                    this.$router.push("/home/square");
-                }
+                    window.sessionStorage.setItem('token', res.data.token);
+                            Notify({ type: 'success', message: '登录成功' });
+                            setCookie(res.data.id);
+                            this.$router.push("/home/square");
+                };
             } catch(err) {
                 Notify({ type: 'danger', message: '登录失败' });
             }

@@ -1,16 +1,17 @@
 <template>
     <div>
-        <div class="desc">这是内嵌的页面</div>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import { _exampleAPI } from '../../server/api.js';
 export default {
+    name:'register',
     data() {
         return {};
     }    
 };
 </script>
 <style lang="less" scoped>
+
 </style>
